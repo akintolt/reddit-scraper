@@ -1,10 +1,15 @@
+
+import json
+import random
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 from bs4 import BeautifulSoup
 import time
 
-from bs import generatePDF
+
 
 def collate_links(url):
     print("INITIALISITNG CHROMEDRIVER")
@@ -21,11 +26,18 @@ def collate_links(url):
     
     driver.get(url)
 
+    print("Rejecting cookies.")
+    time.sleep(10)
+
+
     print("SCROLLING THE LENGTH OF THE PAGE\n")
     # Scroll down the page
-    SCROLL_PAUSE_TIME = 2  # Time in seconds between scrolls
     last_height = driver.execute_script("return document.body.scrollHeight")
+
     while True:
+
+
+        SCROLL_PAUSE_TIME =  random.randint(4, 9) # Time in seconds between scrolls
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(SCROLL_PAUSE_TIME)
         new_height = driver.execute_script("return document.body.scrollHeight")
@@ -52,8 +64,12 @@ def collate_links(url):
 
     # Converting the list to a set to remove duplicates, and then back to a list
     unique_links = list(set(links))
-    return unique_links
+    # Dump into a JSON file
+    with open("links.json", "w") as file:
+        json.dump(unique_links, file, indent=4) 
+    print("a link to each post in the subreddit has been saved to links.json")
 
 
-print("starting to run the project!")
+
+
 collate_links("https://www.reddit.com/r/unitedkingdom/")
