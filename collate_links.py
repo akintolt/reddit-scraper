@@ -10,7 +10,7 @@ def collate_links(url):
     print("INITIALISITNG CHROMEDRIVER")
     # Set up Chrome options in headless mode
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration in headless mode
     # Initialize the Chrome WebDriver with the specified options
     driver = webdriver.Chrome(options=chrome_options)
@@ -21,7 +21,7 @@ def collate_links(url):
     
     driver.get(url)
 
-    print("SCROLLING THE LENGTH OF THE PAGE")
+    print("SCROLLING THE LENGTH OF THE PAGE\n")
     # Scroll down the page
     SCROLL_PAUSE_TIME = 2  # Time in seconds between scrolls
     last_height = driver.execute_script("return document.body.scrollHeight")
@@ -40,7 +40,7 @@ def collate_links(url):
     # Parse the updated page source using BeautifulSoup
     soup = BeautifulSoup(page_source, 'html.parser')
 
-    print("PULLING ALL OF THE LINKS")
+    print("PULLING ALL OF THE LINKS\n")
     # Now you can work with the soup object to extract the data you need
     # For example, find all <a> tags with href containing "https://"
     https_links = soup.find_all('a', href=lambda href: href and "comments" in href)
