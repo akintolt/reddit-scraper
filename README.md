@@ -21,10 +21,10 @@ A simple Python-based scraper that collects all post links from a subreddit usin
    If you haven’t already, clone the repository to your local machine:
 
 
-   -git clone https://github.com/akintolt/reddit-scraper.git
-   -cd reddit-scraper
-   -python reddit_scraper.py
-   -collate_links(link)
+   - git clone https://github.com/akintolt/reddit-scraper.git
+   - cd reddit-scraper
+   - python reddit_scraper.py
+   - collate_links(link)
 
 
 ## Example of `links.json` Output
